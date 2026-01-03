@@ -101,7 +101,7 @@ const Confetti: React.FC = () => {
 };
 
 const CountdownTimer: React.FC = () => {
-  const targetDate = new Date('2026-01-05T00:00:00').getTime();
+  const targetDate = new Date('2026-01-10T00:00:00').getTime();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -255,7 +255,11 @@ const Hero: React.FC = () => {
                className="text-white/80 max-w-xs sm:max-w-md md:max-w-2xl text-base md:text-lg md:text-xl font-light px-4"
              >
                Viví el verano en la Costa de Oro con World Case UY. <br className="hidden sm:block"/> 
-               <span className="text-brand-celeste font-bold uppercase tracking-widest text-sm md:text-base">Primer Sorteo: 5 de Enero</span>
+               <span className="text-brand-celeste font-bold uppercase tracking-widest text-sm md:text-base">Primer Sorteo: 10 de Enero</span>
+               <br className="hidden sm:block"/>
+               <span className="text-white/60 text-xs md:text-sm font-mono uppercase tracking-wider mt-2 inline-block">
+                Anotándote participás automáticamente de todos los sorteos de la temporada
+               </span>
              </motion.p>
              
              {/* Countdown Component */}

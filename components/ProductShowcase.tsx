@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion, useTransform, useMotionValue, useSpring } from 'framer-motion';
-import { Trophy, Crown, Sparkles, Star } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { Trophy, Crown, Sparkles, Star, X } from 'lucide-react';
 
 interface TiltCardProps {
   children: React.ReactNode;
@@ -42,6 +42,9 @@ const TiltCard: React.FC<TiltCardProps> = ({ children, className }) => {
 };
 
 const ProductShowcase: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSecondPrizeModalOpen, setIsSecondPrizeModalOpen] = useState(false);
+
   return (
     <section id="prizes" className="py-32 bg-brand-surface relative overflow-hidden">
         {/* Background Decor */}
@@ -57,7 +60,7 @@ const ProductShowcase: React.FC = () => {
             QUÉ <span className="text-brand-celeste">GANÁS</span>
           </h2>
           <p className="text-white/70 text-xl max-w-2xl mx-auto">
-             En cada sorteo de la temporada, regalamos <span className="text-brand-celeste font-bold">3 FUNDAS PERSONALIZADAS</span> con nuestra tecnología premium de Tinta Resina.
+             En el primer sorteo de la temporada, regalamos un <span className="text-brand-celeste font-bold">PARLANTE BLUETOOTH PREMIUM</span> y <span className="text-brand-acid font-bold">2 FUNDAS PERSONALIZADAS</span> con nuestra tecnología de impresión.
           </p>
         </div>
 
@@ -72,25 +75,28 @@ const ProductShowcase: React.FC = () => {
                
                <div className="bg-black/50 rounded-[1.8rem] p-8 h-full flex flex-col items-center text-center backdrop-blur-sm overflow-hidden relative">
                   {/* Visual Representation */}
-                  <div className="flex justify-center gap-4 mb-8 relative z-10 mt-6">
-                      <div className="w-24 h-48 bg-gray-800 rounded-[1.5rem] border-2 border-white/10 rotate-[-10deg] transform translate-x-4 shadow-2xl relative overflow-hidden">
-                         <img src="https://picsum.photos/300/600?beach,summer" className="w-full h-full object-cover opacity-80" />
-                      </div>
-                      <div className="w-24 h-48 bg-gray-800 rounded-[1.5rem] border-2 border-white/10 rotate-[10deg] transform -translate-x-4 shadow-2xl relative overflow-hidden z-10">
-                          <img src="https://picsum.photos/300/600?ocean,blue" className="w-full h-full object-cover opacity-80" />
+                  <div className="flex justify-center mb-8 relative z-10 mt-6">
+                      <div 
+                        className="w-44 h-44 bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-[2rem] border border-brand-celeste/50 shadow-[0_0_40px_rgba(56,182,255,0.3)] relative overflow-visible flex items-center justify-center backdrop-blur-md cursor-pointer hover:scale-105 transition-transform duration-300"
+                        onClick={() => setIsModalOpen(true)}
+                      >
+                         <div className="absolute inset-0 bg-gradient-to-t from-brand-celeste/10 to-transparent rounded-[2rem]"></div>
+                         <img src="https://pub-f24c794dd2b44b4e8351b5f54de70b4a.r2.dev/fotoparlantepremio.png" className="w-52 h-52 object-contain relative z-10 -mt-4" />
                       </div>
                   </div>
 
-                  <h3 className="text-3xl font-bold text-white mb-2">COMBO DUO</h3>
-                  <div className="text-5xl font-black text-brand-celeste mb-4 uppercase">2 FUNDAS</div>
+                  <h3 className="text-3xl font-bold text-white mb-2">PARLANTE BLUETOOTH</h3>
+                  <div className="text-5xl font-black text-brand-celeste mb-4 uppercase">PREMIUM</div>
                   <p className="text-gray-400 text-sm font-mono mb-6 max-w-xs">
-                    El primer ganador se lleva un par de fundas para disfrutar o compartir. Vos ponés las fotos o diseños, nosotros la magia.
+                    El primer ganador se lleva un parlante Bluetooth profesional con todas las conexiones y luces LED para disfrutar del verano al máximo.
                   </p>
                   
                   <ul className="text-left space-y-2 text-sm text-gray-300 mb-8">
-                     <li className="flex items-center gap-2"><Sparkles size={14} className="text-brand-celeste"/> Personalización Total</li>
-                     <li className="flex items-center gap-2"><Sparkles size={14} className="text-brand-celeste"/> Todos los modelos de Celu</li>
-                     <li className="flex items-center gap-2"><Sparkles size={14} className="text-brand-celeste"/> Acabado Ultra Premium</li>
+                     <li className="flex items-center gap-2"><Sparkles size={14} className="text-brand-celeste"/> Luces LED RGB</li>
+                     <li className="flex items-center gap-2"><Sparkles size={14} className="text-brand-celeste"/> Radio FM integrada</li>
+                     <li className="flex items-center gap-2"><Sparkles size={14} className="text-brand-celeste"/> Entradas USB y micro SD</li>
+                     <li className="flex items-center gap-2"><Sparkles size={14} className="text-brand-celeste"/> AUX 3.5mm y MIC</li>
+                     <li className="flex items-center gap-2"><Sparkles size={14} className="text-brand-celeste"/> Bluetooth 5.0</li>
                   </ul>
                </div>
             </div>
@@ -106,20 +112,25 @@ const ProductShowcase: React.FC = () => {
                <div className="bg-black/50 rounded-[1.8rem] p-8 h-full flex flex-col items-center text-center backdrop-blur-sm overflow-hidden relative">
                   {/* Visual Representation */}
                   <div className="flex justify-center mb-8 relative z-10 mt-6">
-                      <div className="w-24 h-48 bg-gray-800 rounded-[1.5rem] border-2 border-white/10 rotate-[5deg] shadow-2xl relative overflow-hidden">
-                          <img src="https://picsum.photos/300/600?sunset,summer" className="w-full h-full object-cover opacity-80" />
+                      <div 
+                        className="w-32 h-32 bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-[2rem] border border-brand-acid/50 shadow-[0_0_40px_rgba(255,255,0,0.3)] relative overflow-visible flex items-center justify-center backdrop-blur-md cursor-pointer hover:scale-105 transition-transform duration-300"
+                        onClick={() => setIsSecondPrizeModalOpen(true)}
+                      >
+                         <div className="absolute inset-0 bg-gradient-to-t from-brand-acid/10 to-transparent rounded-[2rem]"></div>
+                         <img src="https://pub-f24c794dd2b44b4e8351b5f54de70b4a.r2.dev/fundaspersonalizadas.png" className="w-40 h-40 object-contain relative z-10 -mt-4" />
                       </div>
                   </div>
 
-                  <h3 className="text-3xl font-bold text-white mb-2">INDIVIDUAL</h3>
-                  <div className="text-5xl font-black text-brand-acid mb-4 uppercase">1 FUNDA</div>
+                  <h3 className="text-3xl font-bold text-white mb-2">COMBO DUO</h3>
+                  <div className="text-5xl font-black text-brand-acid mb-4 uppercase">2 FUNDAS</div>
                   <p className="text-gray-400 text-sm font-mono mb-6 max-w-xs">
-                    El segundo puesto gana una funda personalizada premium para arrancar el año con el mejor estilo en su smartphone.
+                    El segundo ganador se lleva dos fundas personalizadas premium para compartir o combinar. Vos ponés las fotos o diseños, nosotros la magia.
                   </p>
                    <ul className="text-left space-y-2 text-sm text-gray-300 mb-8">
-                     <li className="flex items-center gap-2"><Star size={14} className="text-brand-acid"/> Diseño 100% a elección</li>
-                     <li className="flex items-center gap-2"><Star size={14} className="text-brand-acid"/> Calidad World Case</li>
+                     <li className="flex items-center gap-2"><Star size={14} className="text-brand-acid"/> Personalización Total</li>
+                     <li className="flex items-center gap-2"><Star size={14} className="text-brand-acid"/> Todos los modelos de Celu</li>
                      <li className="flex items-center gap-2"><Star size={14} className="text-brand-acid"/> Impresión UV Duradera</li>
+                     <li className="flex items-center gap-2"><Star size={14} className="text-brand-acid"/> Calidad World Case</li>
                   </ul>
                </div>
             </div>
@@ -137,6 +148,74 @@ const ProductShowcase: React.FC = () => {
         </div>
 
       </div>
+
+      {/* Modal for first prize enlarged image */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", damping: 20 }}
+              className="relative w-full h-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-4 right-4 z-10 text-white/70 hover:text-white transition-colors p-2 bg-black/50 rounded-full"
+              >
+                <X size={32} />
+              </button>
+              <img 
+                src="https://pub-f24c794dd2b44b4e8351b5f54de70b4a.r2.dev/fotoparlantepremio.png" 
+                className="w-full h-full object-contain"
+                alt="Parlante Bluetooth Premium"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal for second prize enlarged image */}
+      <AnimatePresence>
+        {isSecondPrizeModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
+            onClick={() => setIsSecondPrizeModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", damping: 20 }}
+              className="relative w-full h-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setIsSecondPrizeModalOpen(false)}
+                className="absolute top-4 right-4 z-10 text-white/70 hover:text-white transition-colors p-2 bg-black/50 rounded-full"
+              >
+                <X size={32} />
+              </button>
+              <img 
+                src="https://pub-f24c794dd2b44b4e8351b5f54de70b4a.r2.dev/fundas_premium.webp" 
+                className="w-full h-full object-contain"
+                alt="Fundas Personalizadas Premium"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

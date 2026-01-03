@@ -114,7 +114,7 @@ const RaffleRegistration: React.FC = () => {
                 <div className="text-gray-400 text-base md:text-lg mb-8 md:mb-12 leading-relaxed">
                     <p className="mb-4">Completá el formulario para participar en los sorteos de la temporada.</p>
                     <ul className="space-y-2 font-mono text-sm md:text-base">
-                      <li><strong className="text-brand-celeste">Primer Sorteo:</strong> 05/01/2026</li>
+                      <li><strong className="text-brand-celeste">Primer Sorteo:</strong> 10/01/2026</li>
                       <li><strong className="text-brand-celeste">Segundo Sorteo:</strong> A CONFIRMAR</li>
                       <li><strong className="text-brand-celeste">Tercer Sorteo:</strong> 28/02/2026</li>
                     </ul>
